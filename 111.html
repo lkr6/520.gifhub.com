@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>粉色23 - 视频空间</title>
+    <style>
+        /* ========== 全局重置与基础 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 25%, #ffc0cb 50%, #ffb6c1 75%, #ffd1dc 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 渐变背景动起来 */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ========== 满屏粉色23背景图案 ========== */
+        .bg-twenty-three {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 40px;
+            font-weight: 900;
+            user-select: none;
+            animation: floatAround 20s linear infinite;
+        }
+
+        /* 生成很多个23，布满屏幕 */
+        .bg-twenty-three:nth-child(1)  { top: 5%; left: 3%; animation-delay: 0s; font-size: 35px; }
+        .bg-twenty-three:nth-child(2)  { top: 5%; left: 15%; animation-delay: -2s; font-size: 48px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(3)  { top: 5%; left: 28%; animation-delay: -4s; font-size: 30px; }
+        .bg-twenty-three:nth-child(4)  { top: 5%; left: 42%; animation-delay: -6s; font-size: 44px; opacity: 0.22; }
+        .bg-twenty-three:nth-child(5)  { top: 5%; left: 55%; animation-delay: -8s; font-size: 36px; }
+        .bg-twenty-three:nth-child(6)  { top: 5%; left: 68%; animation-delay: -10s; font-size: 50px; opacity: 0.18; }
+        .bg-twenty-three:nth-child(7)  { top: 5%; left: 80%; animation-delay: -12s; font-size: 32px; }
+        .bg-twenty-three:nth-child(8)  { top: 5%; left: 92%; animation-delay: -14s; font-size: 42px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(9)  { top: 20%; left: 8%; animation-delay: -16s; font-size: 38px; opacity: 0.22; }
+        .bg-twenty-three:nth-child(10) { top: 20%; left: 22%; animation-delay: -18s; font-size: 28px; }
+        .bg-twenty-three:nth-child(11) { top: 20%; left: 38%; animation-delay: -1s; font-size: 46px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(12) { top: 20%; left: 50%; animation-delay: -3s; font-size: 34px; }
+        .bg-twenty-three:nth-child(13) { top: 20%; left: 65%; animation-delay: -5s; font-size: 40px; opacity: 0.18; }
+        .bg-twenty-three:nth-child(14) { top: 20%; left: 78%; animation-delay: -7s; font-size: 30px; }
+        .bg-twenty-three:nth-child(15) { top: 20%; left: 90%; animation-delay: -9s; font-size: 44px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(16) { top: 35%; left: 5%; animation-delay: -11s; font-size: 32px; }
+        .bg-twenty-three:nth-child(17) { top: 35%; left: 18%; animation-delay: -13s; font-size: 48px; opacity: 0.15; }
+        .bg-twenty-three:nth-child(18) { top: 35%; left: 32%; animation-delay: -15s; font-size: 36px; }
+        .bg-twenty-three:nth-child(19) { top: 35%; left: 45%; animation-delay: -17s; font-size: 42px; opacity: 0.22; }
+        .bg-twenty-three:nth-child(20) { top: 35%; left: 60%; animation-delay: -19s; font-size: 28px; }
+        .bg-twenty-three:nth-child(21) { top: 35%; left: 73%; animation-delay: -21s; font-size: 50px; opacity: 0.18; }
+        .bg-twenty-three:nth-child(22) { top: 35%; left: 85%; animation-delay: -23s; font-size: 34px; }
+        .bg-twenty-three:nth-child(23) { top: 45%; left: 10%; animation-delay: -25s; font-size: 44px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(24) { top: 50%; left: 25%; animation-delay: -1.5s; font-size: 30px; }
+        .bg-twenty-three:nth-child(25) { top: 50%; left: 40%; animation-delay: -3.5s; font-size: 46px; opacity: 0.15; }
+        .bg-twenty-three:nth-child(26) { top: 50%; left: 55%; animation-delay: -5.5s; font-size: 36px; }
+        .bg-twenty-three:nth-child(27) { top: 50%; left: 70%; animation-delay: -7.5s; font-size: 38px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(28) { top: 50%; left: 84%; animation-delay: -9.5s; font-size: 32px; }
+        .bg-twenty-three:nth-child(29) { top: 60%; left: 6%; animation-delay: -11.5s; font-size: 42px; opacity: 0.18; }
+        .bg-twenty-three:nth-child(30) { top: 60%; left: 20%; animation-delay: -13.5s; font-size: 28px; }
+        .bg-twenty-three:nth-child(31) { top: 60%; left: 35%; animation-delay: -15.5s; font-size: 48px; opacity: 0.15; }
+        .bg-twenty-three:nth-child(32) { top: 60%; left: 50%; animation-delay: -17.5s; font-size: 34px; }
+        .bg-twenty-three:nth-child(33) { top: 60%; left: 65%; animation-delay: -19.5s; font-size: 40px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(34) { top: 60%; left: 80%; animation-delay: -21.5s; font-size: 30px; }
+        .bg-twenty-three:nth-child(35) { top: 70%; left: 12%; animation-delay: -23.5s; font-size: 44px; opacity: 0.18; }
+        .bg-twenty-three:nth-child(36) { top: 70%; left: 28%; animation-delay: -2.5s; font-size: 36px; }
+        .bg-twenty-three:nth-child(37) { top: 70%; left: 43%; animation-delay: -4.5s; font-size: 50px; opacity: 0.15; }
+        .bg-twenty-three:nth-child(38) { top: 70%; left: 58%; animation-delay: -6.5s; font-size: 32px; }
+        .bg-twenty-three:nth-child(39) { top: 70%; left: 72%; animation-delay: -8.5s; font-size: 38px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(40) { top: 70%; left: 88%; animation-delay: -10.5s; font-size: 46px; }
+        .bg-twenty-three:nth-child(41) { top: 80%; left: 5%; animation-delay: -12.5s; font-size: 34px; opacity: 0.18; }
+        .bg-twenty-three:nth-child(42) { top: 80%; left: 20%; animation-delay: -14.5s; font-size: 42px; }
+        .bg-twenty-three:nth-child(43) { top: 80%; left: 35%; animation-delay: -16.5s; font-size: 28px; opacity: 0.22; }
+        .bg-twenty-three:nth-child(44) { top: 80%; left: 50%; animation-delay: -18.5s; font-size: 48px; }
+        .bg-twenty-three:nth-child(45) { top: 80%; left: 65%; animation-delay: -20.5s; font-size: 36px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(46) { top: 80%; left: 78%; animation-delay: -22.5s; font-size: 44px; }
+        .bg-twenty-three:nth-child(47) { top: 85%; left: 15%; animation-delay: -24.5s; font-size: 30px; opacity: 0.18; }
+        .bg-twenty-three:nth-child(48) { top: 90%; left: 30%; animation-delay: -3.2s; font-size: 38px; }
+        .bg-twenty-three:nth-child(49) { top: 90%; left: 48%; animation-delay: -5.2s; font-size: 46px; opacity: 0.15; }
+        .bg-twenty-three:nth-child(50) { top: 90%; left: 62%; animation-delay: -7.2s; font-size: 32px; }
+        .bg-twenty-three:nth-child(51) { top: 90%; left: 76%; animation-delay: -9.2s; font-size: 40px; opacity: 0.2; }
+        .bg-twenty-three:nth-child(52) { top: 90%; left: 90%; animation-delay: -11.2s; font-size: 34px; }
+
+        @keyframes floatAround {
+            0%   { transform: translateY(0px) rotate(0deg); }
+            25%  { transform: translateY(-8px) rotate(3deg); }
+            50%  { transform: translateY(4px) rotate(-3deg); }
+            75%  { transform: translateY(-4px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* ========== 主卡片容器 ========== */
+        .main-card {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(255, 105, 135, 0.3), 0 0 120px rgba(255, 182, 193, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        /* 卡片的粉色光晕 */
+        .main-card::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 32px;
+            padding: 4px;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffb6c1, #ff69b4);
+            background-size: 300% 300%;
+            animation: borderGlow 4s ease infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: exclude;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ========== 标题23 ========== */
+        .title-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .number-23 {
+            font-size: 72px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff6b8a, #ff4088, #ff2d78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 4px 8px rgba(255, 64, 128, 0.5));
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 4px 8px rgba(255, 64, 128, 0.5)); }
+            50% { filter: drop-shadow(0 6px 16px rgba(255, 64, 128, 0.85)); }
+        }
+
+        .heart-icon {
+            font-size: 40px;
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.25); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.18); }
+            60% { transform: scale(1); }
+        }
+
+        /* ========== 视频容器 ========== */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(255, 105, 135, 0.4);
+            margin-bottom: 20px;
+            background: #000; /* 视频加载前的黑色背景 */
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* 视频装饰边框 */
+        .video-decoration {
+            position: absolute;
+            inset: -6px;
+            border-radius: 24px;
+            padding: 6px;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #ffb6c1, #ff69b4);
+            background-size: 300% 300%;
+            animation: borderGlow 4s ease infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: exclude;
+            mask-composite: exclude;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ========== 底部小字 ========== */
+        .caption {
+            color: #e8577c;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        .caption span {
+            display: inline-block;
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+        .caption span:nth-child(1) { animation-delay: 0s; }
+        .caption span:nth-child(2) { animation-delay: 0.1s; }
+        .caption span:nth-child(3) { animation-delay: 0.2s; }
+        .caption span:nth-child(4) { animation-delay: 0.3s; }
+        .caption span:nth-child(5) { animation-delay: 0.4s; }
+        .caption span:nth-child(6) { animation-delay: 0.5s; }
+        .caption span:nth-child(7) { animation-delay: 0.6s; }
+        .caption span:nth-child(8) { animation-delay: 0.7s; }
+        .caption span:nth-child(9) { animation-delay: 0.8s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* ========== 飘落花瓣 ========== */
+        .petal {
+            position: fixed;
+            z-index: 5;
+            pointer-events: none;
+            animation: petalFall linear infinite;
+            opacity: 0.7;
+            font-size: 24px;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+            25% {
+                transform: translateY(25vh) rotate(90deg) scale(1.2);
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(0.9);
+            }
+            75% {
+                transform: translateY(75vh) rotate(270deg) scale(1.1);
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg) scale(0.6);
+                opacity: 0;
+            }
+        }
+
+        /* ========== 响应式 ========== */
+        @media (max-width: 600px) {
+            .main-card {
+                padding: 20px 15px;
+                border-radius: 20px;
+            }
+            .number-23 {
+                font-size: 48px;
+            }
+            .heart-icon {
+                font-size: 28px;
+            }
+            .bg-twenty-three {
+                font-size: 20px !important;
+            }
+            .caption {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== 满屏粉色23背景 ==================== -->
+    <!-- 52个23元素布满整个屏幕 -->
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+    <div class="bg-twenty-three">23</div>
+
+    <!-- ==================== 飘落花瓣 ==================== -->
+    <div class="petal" style="left: 5%; animation-duration: 8s; animation-delay: 0s;">🌸</div>
+    <div class="petal" style="left: 12%; animation-duration: 7s; animation-delay: -2s;">💮</div>
+    <div class="petal" style="left: 20%; animation-duration: 9s; animation-delay: -4s;">🌸</div>
+    <div class="petal" style="left: 28%; animation-duration: 8.5s; animation-delay: -1s;">🩷</div>
+    <div class="petal" style="left: 35%; animation-duration: 7.5s; animation-delay: -3s;">🌸</div>
+    <div class="petal" style="left: 42%; animation-duration: 9.5s; animation-delay: -5s;">💮</div>
+    <div class="petal" style="left: 50%; animation-duration: 8s; animation-delay: -2.5s;">🌸</div>
+    <div class="petal" style="left: 58%; animation-duration: 7.8s; animation-delay: -4.5s;">🩷</div>
+    <div class="petal" style="left: 65%; animation-duration: 8.2s; animation-delay: -1.5s;">🌸</div>
+    <div class="petal" style="left: 72%; animation-duration: 9s; animation-delay: -3.5s;">💮</div>
+    <div class="petal" style="left: 80%; animation-duration: 7.3s; animation-delay: -5.5s;">🌸</div>
+    <div class="petal" style="left: 88%; animation-duration: 8.8s; animation-delay: -2.2s;">🩷</div>
+    <div class="petal" style="left: 95%; animation-duration: 9.2s; animation-delay: -4.2s;">🌸</div>
+    <div class="petal" style="left: 15%; animation-duration: 7.6s; animation-delay: -6s;">💮</div>
+    <div class="petal" style="left: 48%; animation-duration: 8.4s; animation-delay: -3.8s;">🌸</div>
+
+    <!-- ==================== 主卡片 ==================== -->
+    <div class="main-card">
+        <!-- 标题 -->
+        <div class="title-section">
+            <span class="number-23"> </span>
+            <span class="heart-icon"> 23</span>
+            <span class="number-23"> </span>
+        </div>
+
+        <!-- 视频区域 -->
+        <div style="position: relative; display: inline-block; width: 100%;">
+            <div class="video-decoration"></div>
+            <div class="video-wrapper"
+                <!-- 
+                ========================================
+                替换为你自己的视频！
+                方式1: 本地文件 <video src="./your-video.mp4" ...>
+                方式2: 在线链接 <video src="https://example.com/video.mp4" ...>
+                方式3: 嵌入YouTube/B站等iframe
+                ========================================
+                -->
+                <video controls poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect fill='%23ffb6c1' width='800' height='450'/%3E%3Ctext x='400' y='225' text-anchor='middle' dominant-baseline='middle' font-size='48' fill='white' font-family='sans-serif'%3E🎀 23 🎀%3C/text%3E%3C/svg%3E">
+                    <!-- 示例视频源（请替换为你自己的视频链接） -->
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/31.mp4" type="31/mp4">
+                    您的浏览器不支持视频播放，请更换浏览器查看。
+                </video>
+            </div>
+        </div>
+
+        <!-- 底部文字 -->
+        <div class="caption">
+            <span>✨</span>
+            <span> </span>
+            <span> </span>
+            <span> </span>
+            <span>2</span>
+            <span>3</span>
+            <span> </span>
+            <span> </span>
+            <span> </span>
+            <span>✨</span>
+        </div>
+    </div>
+
+</body>
+</html>
